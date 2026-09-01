@@ -490,10 +490,6 @@
     });
   });
 
-  function canvasToBlob(canvas) {
-    return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-  }
-
   // ---------- Formspree submission ----------
   const waiverForm = document.getElementById('waiverForm');
   const submitBtn = document.getElementById('submitBtn');
@@ -519,20 +515,25 @@
     formMsg.className = 'form-msg';
 
     try {
+      // Build a plain object from all named form fields (text inputs, radios, checkbox)
       const formData = new FormData(waiverForm);
+      const payload = {};
+      formData.forEach((value, key) => { payload[key] = value; });
 
-      const clientBlob = await canvasToBlob(clientSigCanvas);
-      formData.append('Client Signature', clientBlob, 'client-signature.png');
-
-      if (!guardianSigCanvas._isEmpty()) {
-        const guardianBlob = await canvasToBlob(guardianSigCanvas);
-        formData.append('Guardian Signature', guardianBlob, 'guardian-signature.png');
-      }
+      // Embed signatures as base64 image data (text) rather than file uploads,
+      // since file attachments require a paid Formspree plan.
+      payload['Client Signature'] = clientSigCanvas.toDataURL('image/png');
+      payload['Guardian Signature'] = guardianSigCanvas._isEmpty()
+        ? '(not provided)'
+        : guardianSigCanvas.toDataURL('image/png');
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
       });
 
       if (response.ok) {
