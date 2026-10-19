@@ -424,22 +424,55 @@
     .nav-book-btn{padding:8px 12px;}
   }
   @media (min-width:1024px){.nav-mark{font-size:28px;}.nav-plan-btn{font-size:13px;padding:13px 26px;}}
+
+  .nav-toggle{display:none;}
+  .nav-drawer-book{display:none;}
+  .nav-backdrop{display:none;}
+  @media (max-width:760px){
+    nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ivory);}
+    .nav-book-btn{display:none;}
+    .nav-drawer-book{display:block;}
+    .nav-links{
+      display:flex;
+      position:fixed;top:0;right:0;
+      height:100vh;width:72vw;
+      background:var(--ivory);
+      flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:0 40px;gap:28px;font-size:14px;
+      transform:translateX(100%);
+      transition:transform .4s cubic-bezier(.16,1,.3,1), visibility 0s linear .4s;
+      visibility:hidden;
+      box-shadow:-8px 0 30px rgba(0,0,0,0.08);
+      z-index:60;
+    }
+    .nav-links.open{transform:translateX(0);visibility:visible;transition:transform .4s cubic-bezier(.16,1,.3,1), visibility 0s;}
+    .nav-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;margin-left:4px;position:relative;z-index:70;}
+    .nav-toggle span{width:22px;height:1px;background:var(--wine-deep);transition:transform .3s ease, opacity .3s ease;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    .nav-backdrop{display:block;position:fixed;inset:0;z-index:45;background:rgba(20,6,8,0.35);opacity:0;pointer-events:none;transition:opacity .3s ease;}
+    .nav-backdrop.show{opacity:1;pointer-events:auto;}
+  }
 </style>
 </head>
 <body>
 
+<div class="nav-backdrop" id="navBackdrop"></div>
 <nav>
   <a href="index.html" class="nav-mark" aria-label="Alayé home">ALAYÉ</a>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="index.html#events">Events</a>
     <a href="index.html#menu">Pricing</a>
     <a href="partnerships.html">Studio Partnerships</a>
     <a href="index.html#faq">FAQ</a>
+    <a href="https://square.site/appointments/buyer/widget/nj7rgnl5iwouhd/LVJ74EJGWN24H" target="_blank" rel="noopener" class="nav-drawer-book">Book an Appointment</a>
   </div>
   <div class="nav-actions">
     <a href="https://square.site/appointments/buyer/widget/nj7rgnl5iwouhd/LVJ74EJGWN24H" target="_blank" rel="noopener" class="nav-book-btn">Book Now</a>
     <a href="index.html#inquire" class="nav-plan-btn">Plan Your Event</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -605,5 +638,17 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    var toggle=document.getElementById('navToggle'), links=document.getElementById('navLinks'), back=document.getElementById('navBackdrop');
+    function setMenu(o){toggle.classList.toggle('open',o);links.classList.toggle('open',o);back.classList.toggle('show',o);}
+    toggle.addEventListener('click',function(e){e.stopPropagation();setMenu(!links.classList.contains('open'));});
+    links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+    back.addEventListener('click',function(){setMenu(false);});
+    document.addEventListener('click',function(e){if(links.classList.contains('open')&&!links.contains(e.target)&&!toggle.contains(e.target))setMenu(false);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
+    window.addEventListener('scroll',function(){if(links.classList.contains('open'))setMenu(false);},{passive:true});
+  })();
+</script>
 </body>
 </html>
