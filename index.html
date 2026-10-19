@@ -1295,13 +1295,21 @@
   }
   .inquire-form .form-row{align-items:end;}
 
+  .nav-backdrop{display:none;}
+  @media (max-width:760px){
+    .nav-backdrop{display:block;position:fixed;inset:0;z-index:45;background:rgba(20,6,8,0.35);opacity:0;pointer-events:none;transition:opacity .3s ease;}
+    .nav-backdrop.show{opacity:1;pointer-events:auto;}
+  }
+
 </style>
 </head>
 <body>
 
+<div class="nav-backdrop" id="navBackdrop"></div>
 <nav id="nav">
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
   <div class="nav-links" id="navLinks">
+    <a href="#top">Home</a>
     <a href="#events">Events</a>
     <a href="#menu">Pricing</a>
     <a href="partnerships.html">Studio Partnerships</a>
@@ -1688,16 +1696,21 @@
 
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('open');
-    navLinks.classList.toggle('open');
+  const navBackdrop = document.getElementById('navBackdrop');
+  function setMenu(open) {
+    navToggle.classList.toggle('open', open);
+    navLinks.classList.toggle('open', open);
+    navBackdrop.classList.toggle('show', open);
+  }
+  navToggle.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!navLinks.classList.contains('open')); });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  navBackdrop.addEventListener('click', () => setMenu(false));
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) setMenu(false);
   });
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      navLinks.classList.remove('open');
-    });
-  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  window.addEventListener('scroll', () => { if (navLinks.classList.contains('open')) setMenu(false); }, { passive: true });
+
 
   // ---------- Event inquiry form (Formspree) ----------
   const eventForm = document.getElementById('eventForm');
