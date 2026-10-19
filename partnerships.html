@@ -412,18 +412,35 @@
     .footer-tag{font-size:15px;}
     .footer-fine,.footer-legal-links{font-size:13px;}
   }
+
+  .nav-mark{font-family:'Cormorant',serif;font-weight:500;font-size:24px;letter-spacing:0.12em;color:var(--wine-deep);text-decoration:none;}
+  .nav-actions{display:flex;align-items:center;gap:10px;}
+  .nav-plan-btn{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ivory);background:var(--wine-deep);border:1px solid var(--wine-deep);padding:10px 20px;text-decoration:none;white-space:nowrap;}
+  .nav-plan-btn:hover{background:var(--wine);}
+  @media (max-width:760px){
+    .nav-mark{font-size:20px;}
+    .nav-actions{gap:6px;}
+    .nav-plan-btn{font-size:10px;padding:8px 12px;}
+    .nav-book-btn{padding:8px 12px;}
+  }
+  @media (min-width:1024px){.nav-mark{font-size:28px;}.nav-plan-btn{font-size:13px;padding:13px 26px;}}
 </style>
 </head>
 <body>
 
 <nav>
+  <a href="index.html" class="nav-mark" aria-label="Alayé home">ALAYÉ</a>
   <div class="nav-links">
+    <a href="index.html">Home</a>
     <a href="index.html#events">Events</a>
     <a href="index.html#menu">Pricing</a>
     <a href="partnerships.html">Studio Partnerships</a>
     <a href="index.html#faq">FAQ</a>
   </div>
-  <a href="https://square.site/appointments/buyer/widget/nj7rgnl5iwouhd/LVJ74EJGWN24H" target="_blank" rel="noopener" class="nav-book-btn">Book Now</a>
+  <div class="nav-actions">
+    <a href="https://square.site/appointments/buyer/widget/nj7rgnl5iwouhd/LVJ74EJGWN24H" target="_blank" rel="noopener" class="nav-book-btn">Book Now</a>
+    <a href="index.html#inquire" class="nav-plan-btn">Plan Your Event</a>
+  </div>
 </nav>
 
 <header class="hero">
