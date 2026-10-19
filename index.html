@@ -1208,6 +1208,93 @@
     .about-lede{text-align:center;}
   }
 
+  /* ================= DESKTOP SCALE-UP ================= */
+  @media (min-width:1024px){
+    nav{padding:26px 5vw;}
+    nav.scrolled{padding:16px 5vw;}
+    .nav-links{font-size:14px;gap:40px;}
+    .nav-book-btn,.nav-plan-btn{font-size:13px;padding:13px 26px;}
+    .hero{padding:140px 6vw 90px;}
+    .hero-sub{font-size:15px;}
+    .hero-tag{font-size:clamp(28px,2.4vw,38px);}
+    .hero-lede{font-size:21px;max-width:40ch;margin-top:26px;}
+    .hero-cta{font-size:14px;padding:20px 54px;margin-top:38px;}
+    .hero-cta-note{font-size:14px;}
+    .hero-secondary{font-size:14px;}
+    .gallery-strip{height:80vh;max-height:820px;}
+    .gallery-arrow{width:54px;height:54px;font-size:28px;}
+    .gallery-dot{width:9px;height:9px;}
+
+    section{max-width:1040px;padding:110px 5vw;}
+    section.wide{max-width:1320px;}
+    .section-head h2{font-size:clamp(40px,3.6vw,60px);}
+    .section-lede{font-size:19px;max-width:60ch;}
+    .event-cards{gap:26px;}
+    .event-card{padding:38px 36px;}
+    .event-card h3{font-size:28px;}
+    .event-card p{font-size:17px;}
+    .proof-photo{min-height:380px;}
+    .proof-photo figcaption{font-size:21px;}
+    .proof-text h3{font-size:14px;}
+    .proof-big{font-size:clamp(32px,3vw,42px);}
+    .proof-text p{font-size:17px;}
+    .review-feature{max-width:860px;padding:52px 48px;}
+    .review-feature blockquote{font-size:clamp(24px,2.2vw,30px);}
+    .review-feature figcaption{font-size:14px;}
+    .stars{font-size:26px;}
+    .review-themes h3,.fest h3,.area h3,.expect h3{font-size:clamp(32px,2.8vw,40px);}
+    .theme-row strong,.expect-row strong{font-size:25px;}
+    .theme-row span,.expect-row span{font-size:17px;}
+    .fest > p{font-size:17px;}
+    .area-chips span{font-size:15px;padding:11px 22px;}
+    .event-terms strong{font-size:44px;}
+    .event-terms span{font-size:14px;}
+    .terms-note{font-size:18px;max-width:68ch;}
+    .urgency{font-size:25px;}
+    .btn-solid{font-size:14px;padding:20px 54px;}
+    .btn-text{font-size:15px;}
+
+    .about-lede{font-size:19.5px;}
+    .about-points li{font-size:17px;padding:14px 0 14px 26px;}
+    .about-points li::before{top:24px;}
+    .about-steps{font-size:22px;}
+
+    .inquire-inner{max-width:1240px;padding:110px 5vw;}
+    .inquire-intro h2{font-size:clamp(40px,3.6vw,58px);}
+    .inquire-intro p{font-size:18px;}
+    .intro-quote{font-size:22px;}
+    .inquire-form{gap:20px;}
+    .inquire-form label{font-size:13px;}
+    .inquire-form input,.inquire-form select,.inquire-form textarea{font-size:18px;padding:16px 18px;}
+    .form-status,.form-note{font-size:15px;}
+
+    .menu-name,.menu-price{font-size:clamp(26px,2.3vw,34px);}
+    .menu-price.sm{font-size:23px;}
+    .menu-item{padding:30px 0;}
+    .add-ons-head h2{font-size:clamp(28px,2.4vw,36px);}
+    .options-note{font-size:19px;}
+    .options-note.small{font-size:16px;}
+
+    .faq-master-summary h2{font-size:clamp(34px,3vw,46px);}
+    .faq-master-sub{font-size:20px;}
+    .faq-item summary{font-size:clamp(22px,1.9vw,27px);padding:28px 2px;}
+    .faq-item p{font-size:18px;max-width:70ch;}
+
+    footer{padding:100px 5vw 60px;}
+    .footer-tag{font-size:16px;max-width:460px;}
+    .footer-contact{font-size:16px;}
+    .footer-area,.footer-cert{font-size:13px;}
+    .footer-legal-links{font-size:13px;}
+    .footer-legal{font-size:13px;}
+  }
+  @media (min-width:1500px){
+    section{max-width:1180px;}
+    section.wide{max-width:1440px;}
+    .split{gap:80px;}
+    .split-media img{max-height:640px;}
+  }
+  .inquire-form .form-row{align-items:end;}
+
 </style>
 </head>
 <body>
@@ -1342,7 +1429,7 @@
   <div class="area">
     <h3>Serving South Jersey &amp; Philadelphia</h3>
     <div class="area-chips">
-      <span>Haddonfield</span><span>Moorestown</span><span>Collingswood</span><span>Sicklerville</span><span>Philadelphia</span><span>All of South Jersey</span>
+      <span>Haddonfield</span><span>Moorestown</span><span>Collingswood</span><span>Sicklerville</span><span>Philadelphia</span>
     </div>
   </div>
 
@@ -1402,11 +1489,6 @@
       <h2>Plan Your Event</h2>
       <p>Tell us a few details and we'll send you a custom quote. We reply within 24 hours. Please book 3&ndash;4 weeks ahead so we can curate pieces for your event; holiday, Eid and bridal season dates fill up first.</p>
       <p class="intro-quote">&#9733;&#9733;&#9733;&#9733;&#9733; &ldquo;The epitome of professionalism and responsiveness.&rdquo; <span>Lauren L., Google review</span></p>
-      <ul class="contact-list">
-        <li><span>Call or text</span><a href="tel:+18562775499">(856) 277-5499</a></li>
-        <li><span>Email</span><a href="mailto:hello@alayejewelry.com">hello@alayejewelry.com</a></li>
-        <li><span>Instagram DM</span><a href="https://instagram.com/alayepermanentjewelry" target="_blank" rel="noopener">@alayepermanentjewelry</a></li>
-      </ul>
     </div>
 
     <form class="inquire-form" id="eventForm" novalidate>
@@ -1527,7 +1609,7 @@
       </details>
       <details class="faq-item">
         <summary><span>Where do you travel?</span><span class="faq-icon"></span></summary>
-        <p>We serve all of South Jersey and Philadelphia, including Haddonfield, Moorestown, Collingswood and Sicklerville. Travel is confirmed per venue when we send your quote.</p>
+        <p>We serve South Jersey and Philadelphia, including Haddonfield, Moorestown, Collingswood and Sicklerville. Travel is confirmed per venue when we send your quote.</p>
       </details>
       <details class="faq-item">
         <summary><span>How far ahead should I book?</span><span class="faq-icon"></span></summary>
