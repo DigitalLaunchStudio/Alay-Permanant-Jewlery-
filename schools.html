@@ -489,22 +489,18 @@
 
   @media (min-width:1241px){.nav-links{gap:28px !important;font-size:13px !important;}.nav-book-btn,.nav-plan-btn{padding:12px 20px !important;font-size:12px !important;}}
 
-  .collab-grid .option{gap:10px;}
-  .collab-grid .how-text{order:2;font-size:15px;line-height:1.6;}
-  .collab-grid .great{margin-top:auto;order:3;}
-  .collab-grid .how-toggle{display:none;}
-  @media (min-width:1024px){.collab-grid .how-text{font-size:17px;}}
-  @media (max-width:760px){
-    .collab-grid .great{order:2;margin-top:0;}
-    .collab-grid{gap:14px;}
-    .collab-grid .option{padding:24px 22px;gap:8px;}
-    .collab-grid .option h3{font-size:22px;}
-    .collab-grid .how-toggle{display:flex;order:4;align-items:center;justify-content:space-between;width:100%;margin-top:6px;padding:12px 0 0;background:none;border:none;border-top:1px solid rgba(90,22,32,0.25);font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--wine-deep);cursor:pointer;}
-    .collab-grid .how-toggle::after{content:'+';font-size:20px;line-height:1;font-weight:300;}
-    .collab-grid .option.open .how-toggle::after{content:'\2212';}
-    .collab-grid .how-text{display:none;order:5;}
-    .collab-grid .option.open .how-text{display:block;}
-  }
+  .collab-grid{align-items:start;}
+  .collab-grid .option{gap:10px;padding:28px 28px 22px;}
+  .collab-grid .option h3{font-size:clamp(22px,2vw,28px);}
+  .collab-grid .great{margin-top:0;order:2;}
+  .collab-grid .how-toggle{display:flex;order:4;align-items:center;justify-content:space-between;width:100%;margin-top:6px;padding:14px 0 0;background:none;border:none;border-top:1px solid rgba(90,22,32,0.25);font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--wine-deep);cursor:pointer;}
+  .collab-grid .how-toggle:hover{color:var(--wine);}
+  .collab-grid .how-toggle::after{content:'+';font-size:22px;line-height:1;font-weight:300;}
+  .collab-grid .option.open .how-toggle::after{content:'\2212';}
+  .collab-grid .how-text{display:none;order:5;font-size:15px;line-height:1.6;}
+  .collab-grid .option.open .how-text{display:block;}
+  @media (min-width:1024px){.collab-grid .how-text{font-size:17px;}.collab-grid .how-toggle{font-size:13px;}}
+  @media (max-width:760px){.collab-grid{gap:14px;}.collab-grid .option{padding:24px 22px;gap:8px;}.collab-grid .option h3{font-size:22px;}}
 </style>
 </head>
 <body>
