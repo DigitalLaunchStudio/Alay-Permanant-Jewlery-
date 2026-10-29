@@ -1887,5 +1887,20 @@
   });
 </script>
 
+<script>
+/* keep the address bar clean: scroll to sections without leaving #hash in the URL */
+(function(){
+  function clean(){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="#"]');
+    if(!a||a.target==='_blank'||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey)return;
+    if(a.pathname.replace(/index\.html$/,'')!==location.pathname.replace(/index\.html$/,'')||!a.hash||a.hash==='#')return;
+    var t=document.getElementById(decodeURIComponent(a.hash.slice(1)));
+    if(!t)return;
+    e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});clean();
+  });
+  if(location.hash){setTimeout(clean,700);}
+})();
+</script>
 </body>
 </html>
